@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: task-management-api
+    env: python
+    buildCommand: |
+      cd Backend/Flask_app
+      pip install -r requirements.txt
+      flask db upgrade
+    startCommand: cd Backend/Flask_app && gunicorn --bind 0.0.0.0:$PORT wsgi:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: FLASK_APP
+        value: wsgi.py
+      - key: FLASK_ENV
+        value: production
+      - key: JWT_SECRET_KEY
+        value: "3-VUy%Ftb%oH7t8r]p^[&vA+{5e]SM!>mj'1ocANMU+nb?iqSx=dXWL1'r^4Ty"
+      - key: SQLALCHEMY_DATABASE_URI
+        value: "sqlite:///task_management.sqlite"
+      - key: SQLALCHEMY_TRACK_MODIFICATIONS
+        value: false
+    healthCheckPath: /health
+    autoDeploy: true
+
+databases:
+  - name: task-management-db
+    databaseName: taskdb
+    user: task_user
+    plan: free
+
+
+
+
+
