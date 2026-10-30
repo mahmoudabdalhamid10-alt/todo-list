@@ -1,0 +1,208 @@
+main#dashboard {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: background-color 250ms linear;
+}
+main#dashboard * {
+  transition: background-color 250ms linear;
+}
+main#dashboard .contents-container {
+  padding: 0rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0 1rem;
+  width: 100%;
+  height: calc(100vh - 3.5rem);
+  min-height: 100%;
+  overflow: hidden;
+}
+main#dashboard .contents-container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  overflow: auto;
+  padding: 1.5rem 1rem;
+}
+main#dashboard .contents-container section.tasks-section {
+  width: clamp(300px, 90vw, 1000px);
+}
+main#dashboard .contents-container section.tasks-section::-webkit-scrollbar {
+  width: 0.5rem;
+}
+main#dashboard .contents-container section.tasks-section::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: 2px solid transparent;
+  -webkit-transition-property: background-color, border-color;
+  transition-property: background-color, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+main#dashboard .contents-container section.filters-section {
+  min-width: 200px;
+  max-height: 300px;
+  max-width: 300px;
+  height: -moz-max-content;
+  height: max-content;
+  position: relative;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  overflow: visible;
+}
+main#dashboard .contents-container section.filters-section .filters-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  width: 100%;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: -moz-max-content;
+  width: max-content;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group:has(#search) {
+  width: 100%;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group label {
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group .search {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group .search:focus-visible {
+  outline-offset: 2px solid rgba(0, 0, 0, 0.0666666667);
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group select {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+main#dashboard .contents-container section.filters-section .filters-container .filter-group select:focus-visible {
+  outline-offset: 2px solid rgba(0, 0, 0, 0.0666666667);
+}
+main#dashboard .contents-container #add-task-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: rotate 100ms linear;
+}
+main#dashboard .contents-container #add-task-btn.active {
+  rotate: 45deg;
+}
+
+main#dashboard.light {
+  background-color: #fff;
+  color: black;
+}
+main#dashboard.light section.filters-section {
+  background-color: #f0f0f0;
+  color: black;
+}
+main#dashboard.light section.filters-section .filters-container .filter-group .search {
+  background-color: #fff;
+  color: #000;
+}
+main#dashboard.light section.filters-section .filters-container .filter-group .search::-moz-placeholder {
+  color: #444;
+}
+main#dashboard.light section.filters-section .filters-container .filter-group .search::placeholder {
+  color: #444;
+}
+main#dashboard.light section:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3333333333);
+  border-color: #fff;
+}
+main#dashboard.light #add-task-btn {
+  color: white;
+  background-color: #000;
+}
+main#dashboard.light #add-task-btn:hover {
+  background-color: #333;
+}
+main#dashboard.light #add-task-btn:active {
+  background-color: #444;
+}
+main#dashboard.light #add-task-btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+main#dashboard.dark {
+  background-color: #000;
+  color: white;
+}
+main#dashboard.dark section.filters-section {
+  background-color: rgba(255, 255, 255, 0.1450980392);
+}
+main#dashboard.dark section.filters-section .filters-container .filter-group .search {
+  background-color: #fff;
+  color: #000;
+}
+main#dashboard.dark section.filters-section .filters-container .filter-group .search::-moz-placeholder {
+  color: #888;
+}
+main#dashboard.dark section.filters-section .filters-container .filter-group .search::placeholder {
+  color: #888;
+}
+main#dashboard.dark section:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: #000;
+}
+main#dashboard.dark #add-task-btn {
+  color: black;
+  background-color: #fff;
+}
+main#dashboard.dark #add-task-btn:hover {
+  background-color: #ddd;
+}
+main#dashboard.dark #add-task-btn:active {
+  background-color: #ccc;
+}
+main#dashboard.dark #add-task-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  main#dashboard .contents-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    height: auto;
+  }
+  main#dashboard .contents-container section {
+    width: 100%;
+  }
+  main#dashboard .contents-container section.filters-section {
+    max-width: 100%;
+  }
+  main#dashboard .contents-container section.filters-section .filters-container {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  main#dashboard .contents-container section.tasks-section {
+    flex-grow: 1;
+  }
+}/*# sourceMappingURL=Dashboard.css.map */

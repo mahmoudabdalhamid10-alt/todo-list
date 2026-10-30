@@ -1,0 +1,194 @@
+@use "../../styles/shared-styles.scss" as global;
+
+main#dashboard{
+    flex: 1;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: background-color 250ms linear;
+    *{
+        transition: background-color 250ms linear;
+    }
+    .contents-container{
+        padding: 0rem 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 0 1rem;
+        width: 100%;
+        height: calc(100vh - 3.5rem);
+        min-height: 100%;
+        overflow: hidden;
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            overflow: auto;
+            padding: 1.5rem 1rem;
+            &.tasks-section{
+                width: clamp(300px, 90vw, 1000px);
+                &::-webkit-scrollbar{
+                    width: 0.5rem;
+                }
+                &::-webkit-scrollbar-thumb{
+                    border-radius: 0.5rem;
+                    background-color: transparent;
+                    border: 2px solid transparent;
+                    transition-property: background-color, border-color;
+                    transition-duration: 300ms;
+                    transition-timing-function: linear;
+                }
+            }
+            &.filters-section{
+                min-width: 200px;
+                max-height: 300px;
+                max-width: 300px;
+                height: max-content;
+                position: relative;
+                margin: 1rem 0;
+                border-radius: 0.5rem;
+                overflow: visible;
+                .filters-container{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    gap: 1rem;
+                    width: 100%;
+                    .filter-group{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        width: max-content;
+                        &:has(#search){
+                            width: 100%;
+                        }
+                        label{
+                            font-size: 0.85rem;
+                            text-align: center;
+                            padding: 0 0.5rem;
+                        }
+                        .search{
+                            width: 100%;
+                            padding: 0.5rem 1rem;
+                            border-radius: 0.25rem;
+                            border: none;
+                            outline: none;  
+                            &:focus-visible{
+                                outline-offset: 2px solid #0001;
+                            }
+                        }
+                        select{
+                            padding: 0.5rem;
+                            border-radius: 0.25rem;
+                            border: none;
+                            outline: none;
+                            width: 100%;
+                            // background-color: #0001;
+                            &:focus-visible{
+                                outline-offset: 2px solid #0001;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #add-task-btn{
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 2.5rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: rotate 100ms linear;
+            &.active{
+                rotate: 45deg;
+            }
+        }
+    }
+}
+
+main#dashboard.light{
+    background-color: #fff;
+    color: black;
+    section{
+        &.filters-section{
+            background-color: #f0f0f0;
+            color: black;
+            .filters-container .filter-group .search{
+                background-color: #fff;
+                color: #000;
+                &::placeholder{
+                    color: #444;
+                }
+            }
+        }
+        &:hover{
+            &::-webkit-scrollbar-thumb{
+                background-color: #00000055;
+                border-color:  #fff;
+            }
+        }
+    }
+
+    #add-task-btn{
+        color: white;
+        @include global.btns-bg-color(#000, #333, #444);
+    }
+}
+
+main#dashboard.dark{
+    background-color: #000;
+    color: white;
+    section{
+        &.filters-section{
+            background-color: #ffffff25;
+            .filters-container .filter-group .search{
+                background-color: #fff;
+                color: #000;
+                &::placeholder{
+                    color: #888;
+                }
+            }
+        }
+        &:hover{
+            &::-webkit-scrollbar-thumb{
+                background-color: #fff9;
+                border-color: #000;
+            }
+        }
+    }
+
+    #add-task-btn{
+        color: black;
+        @include global.btns-bg-color(#fff, #ddd, #ccc);
+    }
+}
+
+@media screen and (max-width: 768px){
+    main#dashboard{
+        .contents-container{
+            flex-direction: column-reverse;
+            align-items: center;
+            height: auto;
+            section{
+                width: 100%;
+                &.filters-section{
+                    max-width: 100%;
+                    .filters-container{
+                        flex-direction: row;
+                        justify-content: flex-start;
+                    }
+                }
+                &.tasks-section{
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
+}

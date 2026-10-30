@@ -1,0 +1,64 @@
+header {
+  width: 100%;
+}
+header * {
+  transition: background-color 250ms linear;
+}
+header nav {
+  flex-basis: 20%;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav .btns-container {
+  display: flex;
+  gap: 1rem;
+}
+header nav .btns-container .theme-toggler {
+  width: 40px;
+  aspect-ratio: 1/1;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+header nav .btns-container .theme-toggler .theme-toggler-icon {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+header nav .btns-container .log-out-btn {
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  border: 2px solid red;
+  background-color: transparent;
+  transition: background-color 150ms linear;
+  border-radius: 0.5rem;
+  color: inherit;
+}
+header nav .btns-container .log-out-btn:hover {
+  background-color: red;
+}
+header nav.light {
+  background-color: #000;
+  color: #fff;
+}
+header nav.light .theme-toggler {
+  background-color: white;
+  border: 2px solid #fff;
+}
+header nav.dark {
+  background-color: #fff;
+  color: #000;
+}
+header nav.dark .theme-toggler {
+  background-color: #aaa;
+  border: 2px solid #000;
+}/*# sourceMappingURL=NavBar.css.map */
