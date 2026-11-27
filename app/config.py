@@ -1,3 +1,4 @@
+import secrets
 import os
 from dotenv import load_dotenv
 
@@ -12,8 +13,5 @@ SQLALCHEMY_DATABASE_URI = os.environ.get(
 # Disable SQLAlchemy track modifications to improve performance
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-# JWT secret key with the same secure key as in render.yaml and .env
-JWT_SECRET_KEY = os.environ.get(
-    'JWT_SECRET_KEY',
-    "3-VUy%Ftb%oH7t8r]p^[&vA+{5e]SM!>mj'1ocANMU+nb?iqSx=dXWL1'r^4Ty"
-)
+# JWT secret key, read from the environment (never commit it)
+JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or secrets.token_urlsafe(48)  # set JWT_SECRET_KEY in production
